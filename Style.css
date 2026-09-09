@@ -1,0 +1,207 @@
+
+
+/* Applique le modèle de boîte 'border-box' à tous les éléments */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Palette de couleurs et variables de design */
+:root {
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #172033;
+  --color-muted: #526070;
+  --color-primary: #2457d6;
+  --color-primary-hover: #173da0;
+  --color-border: #d8e0eb;
+  --radius: 0.75rem;
+  --shadow: 0 0.75rem 2rem rgba(23, 32, 81, 0.08);
+}
+
+/* Styles de base pour le corps du document */
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* Conteneur principal pour centrer le contenu */
+.container {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 4rem;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHIE ET BOUTONS
+   ========================================================================== */
+
+h1, h2, h3 {
+  margin-block: 0 1rem;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+p {
+  max-width: 65ch;
+  color: var(--color-muted);
+}
+
+.eyebrow {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+}
+
+/* Style du bouton d'envoi */
+.button {
+  display: inline-block;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Gestion de l'accessibilité pour le focus au clavier */
+.button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #f5b700;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   3. EN-TÊTE ET NAVIGATION (FLEXBOX)
+   ========================================================================== */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+}
+
+.logo {
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-list a:hover {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   4. FORMULAIRE DE CONTACT
+   ========================================================================== */
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 40rem;
+  background-color: var(--color-surface);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+}
+
+.contact-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   5. PIED DE PAGE ET RESPONSIVE DESIGN
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  padding-block: 2rem;
+  margin-top: 4rem;
+  background-color: var(--color-surface);
+}
+
+/* Adaptation pour les écrans mobiles (Media Query) */
+@media (max-width: 42rem) {
+  .site-header nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 1rem;
+  }
+
+  .section {
+    padding-block: 2rem;
+  }
+
+  .contact-form {
+    padding: 1.25rem;
+  }
+}
