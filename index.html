@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- Définition de l'encodage des caractères (support des accents) -->
+  <meta charset="utf-8">
+  <!-- Configuration pour adapter l'affichage sur les smartphones (Responsive) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alex Martin - Landing Page & Contact</title>
+  <!-- Lien vers la feuille de style CSS externe -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Structure d'en-tête sémantique avec la navigation -->
+  <header class="site-header">
+    <nav class="container" aria-label="Navigation principale">
+      <a class="logo" href="index.html">Alex Martin</a>
+      <ul class="nav-list">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Section de présentation -->
+    <section id="profil" class="hero container">
+      <div>
+        <p class="eyebrow">Développeur web junior</p>
+        <h1>Je construis des expériences web utiles.</h1>
+      </div>
+    </section>
+
+    <!-- Section du Formulaire de Contact -->
+    <section id="contact" class="section container">
+      <h2>Contact</h2>
+      
+      <!-- Formulaire configuré avec l'action et la méthode POST par défaut -->
+      <form class="contact-form" action="/api/contact" method="post">
+        
+        <!-- Champ 1 : Nom -->
+        <label for="name">Nom complet</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+
+        <!-- Champ 2 : Email -->
+        <label for="email">Adresse e-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+
+        <!-- Champ 3 : Message -->
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Bouton d'envoi -->
+        <button class="button" type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Alex Martin</p>
+  </footer>
+
+  <!-- SCRIPT JAVASCRIPT : Connexion avec l'API -->
+  <script>
+    // 1. Sélection de l'élément HTML formulaire dans le DOM
+    const form = document.querySelector('.contact-form');
+
+    // 2. Écoute de l'événement de soumission (clic sur le bouton Envoyer)
+    form.addEventListener('submit', async (event) => {
+      
+      // Bloque l'action par défaut qui rechargerait la page web
+      event.preventDefault();
+
+      // 3. Extraction automatique des valeurs saisies dans les champs input (name, email, message)
+      const formData = new FormData(form);
+      
+      // Conversion des clés/valeurs du formulaire en un objet JavaScript simple
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        // 4. Envoi de la requête HTTP asynchrone vers l'API Node.js
+        const response = await fetch('http://127.0.0.1:3000/api/contact', {
+          method: 'POST', // Spécifie qu'on effectue un envoi de données
+          headers: {
+            'Content-Type': 'application/json' // Indique qu'on transmet du format JSON
+          },
+          body: JSON.stringify(payload) // Transforme l'objet JS en chaîne de texte JSON
+        });
+
+        // 5. Vérification du statut de réponse renvoyé par le serveur
+        if (!response.ok) {
+          throw new Error('La demande n’a pas pu être envoyée.');
+        }
+
+        // 6. Si tout s'est bien passé : on vide le formulaire et affiche un message
+        form.reset();
+        alert('Message envoyé avec succès !');
+
+      } catch (error) {
+        // Traitement en cas d'erreur réseau ou serveur
+        alert('Erreur : ' + error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
