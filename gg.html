@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Section du Formulaire de Contact -->
+    <section id="contact" class="section container">
+      <h2>Contact</h2>
+      
+      <!-- Formulaire configuré avec l'action et la méthode POST par défaut -->
+      <form class="contact-form" action="/api/contact" method="post">
+        
+        <!-- Champ 1 : Nom -->
+        <label for="name">Nom complet</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+        
+
+        <!-- Champ 2 : Email -->
+        <label  for="email">Adresse e-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+
+        <!-- Champ 3 : Message -->
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Bouton d'envoi -->
+        <button class="button" type="submit">Envoyer</button>
+      </form>
+    </section>
+  
+</body>
+</html>

@@ -1,9 +1,11 @@
 // 1. Chargement du module réseau HTTP natif fourni par Node.js
+const expresse = require('node:buffer');
 const http = require('node:http');
 
 // 2. Configuration du nom d'hôte local (votre machine) et du port d'écoute
 const host = '127.0.0.1';
 const port = 3000;
+c
 
 // 3. Création du serveur HTTP
 // La fonction de callback prend deux paramètres :
